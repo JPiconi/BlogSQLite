@@ -14,7 +14,7 @@ function calcularDesconto(price, desconto) {
 }
 
 calcularDesconto(price, desconto);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 1 temperatura
 
 let tCelsius = parseFloat(prompt("Digite a temperatura: "));
@@ -25,7 +25,7 @@ function CelsiusParaFahrenheit(tCelsius) {
 }
 
 CelsiusParaFahrenheit(tCelsius);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 1 Juros
 
 let P = parseFloat(prompt("Insira o valor original do empréstimo: "));
@@ -38,7 +38,7 @@ function juros(P, R, T) {
 }
 
 juros(P, R, T);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 2 Maior Numero
 
 let number1 = parseFloat(prompt("Digite um número!: "));
@@ -55,7 +55,7 @@ function MaiorNumero(number1, number2) {
 }
 
 MaiorNumero(number1, number2);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 2 Idade
 
 let idade = parseFloat(prompt("Insira sua idade!: "));
@@ -71,7 +71,7 @@ function Classificaridade(idade) {
 }
 
 Classificaridade(idade);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 2 nota
 
 let nota = parseFloat(prompt("Digite sua nota!: "));
@@ -87,7 +87,7 @@ function validarNota(nota) {
 }
 
 validarNota(nota);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 3 aprovado ou reprovado
 
 let media = parseFloat(prompt("Digite sua média: "));
@@ -104,7 +104,7 @@ function verificarAprovacao(media, faltas) {
 }
 
 verificarAprovacao(media, faltas);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 3 Intervalo de valores
 
 let valor = parseFloat(prompt("Digite um valor!: "));
@@ -118,7 +118,7 @@ function estaNoIntervalo(valor, min, max) {
 }
 
 estaNoIntervalo(valor, 1, 10);
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 // Parte 3 verificação de login
 
 let username = prompt("Digite seu usuário!: ");
@@ -131,3 +131,4 @@ function VerificarLogin(username, senha) {
 }
 
 VerificarLogin(username, senha);
+/*-------------------------------------------------------------------------------------------------------------------------------------*/

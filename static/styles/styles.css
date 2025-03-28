@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Copperplate";
-  src: url("../fonts/Copperplate.otf");
+  src: url("/static/fonts/Copperplate.otf");
 }
 
 @font-face {
   font-family: "JoseFins";
-  src: url("../fonts/JosefinSans.ttf");
+  src: url("/static/fonts/JosefinSans.ttf");
 }
-
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 * {
   box-sizing: border-box;
   padding: 0;
@@ -23,12 +23,76 @@ body {
   align-items: center;
 }
 
+.container_rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.cloud {
+  position: absolute;
+  width: 250px;
+  height: 100px;
+  background: url("/static/images/nuvem.png") center / cover no-repeat;
+  filter: drop-shadow(2px 2px 20px #e3eed4);
+}
+
+.cloud:nth-child(1) {
+  top: 2.5%;
+  left: 5%;
+}
+.cloud:nth-child(2) {
+  z-index: 112;
+  top: 2.5%;
+  left: 24%;
+}
+.cloud:nth-child(3) {
+  z-index: 1120;
+  top: 9.5%;
+  left: 5%;
+}
+
+.rain {
+  background-color: #e3eed4;
+  width: 5px;
+  height: 5px;
+  border: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  box-shadow: inset -25px 10px 0px -10px #fefefe;
+  z-index: 100;
+  position: absolute;
+  top: 90px;
+  transform-origin: bottom;
+  animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(80vh) scaleY(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(80vh) scaleY(0.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(80vh) scaleY(0.2);
+    opacity: 0;
+  }
+}
 .container {
   width: 80%;
   height: 80%;
   background-color: #e3eed4;
-  border-radius: 30px;
-  box-shadow: 2px -10px 35px #0f2a1d;
+  border-radius: 39px;
+  box-shadow: 2px -10px 30px #0f2a1d;
 
   display: grid;
   grid-template-columns: 40% 60%;
@@ -42,7 +106,7 @@ body {
 .image_container {
   width: 100%;
   height: 100%;
-  background: url("../images/wallpaper.jpg") center / cover no-repeat;
+  background: url("/static/images/wallpaper.jpg") center / cover no-repeat;
   border-radius: 0 40px 40px 0;
 
   padding-left: 10%;
@@ -74,7 +138,7 @@ body {
 
 .image_container h1 {
   font-family: "JoseFins";
-  font-size: 50px;
+  font-size: 40px;
 }
 .image_container p {
   font-family: "Copperplate";
@@ -128,7 +192,7 @@ body {
   z-index: 2;
   font-family: "Copperplate";
   font-size: 11px;
-  margin-top: 5px;
+  margin-top: 3px;
   height: 30px;
 
   padding: 5px 10px;
@@ -166,7 +230,7 @@ body {
 #cadastroForm .bntArea .msgError {
   margin-bottom: 10px;
   height: 25px;
-  color: #f00000;
+  color: #375534;
   font-style: italic;
 }
 
@@ -186,5 +250,46 @@ body {
   background-color: transparent;
   border: 1px solid #0f2a1d;
   color: #0f2a1d;
-  transition: 1s ease;
+  transition: 0.7s ease;
+}
+
+/* Respansividadeeee */
+@media only screen and (max-width: 730px) {
+  .cloud:nth-child(1) {
+    top: 2%;
+    left: -27%;
+  }
+  .cloud:nth-child(2) {
+    top: 2%;
+    left: -2%;
+  }
+  .cloud:nth-child(3) {
+    top: 8%;
+    left: -27%;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .image_container {
+    border-radius: 30px 30px 0 0;
+    height: 110vh;
+  }
+  .image_container h1 {
+    font-size: 30px;
+  }
+  .image_container p {
+    font-size: 10px;
+  }
+
+  .image_container h1,
+  .image_container p {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+  }
+  #cadastroForm {
+    padding: 15px;
+  }
 }
