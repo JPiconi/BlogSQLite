@@ -6,7 +6,7 @@ prompt = prompt();
 // Parte 1 desconto
 
 let price = parseFloat(prompt("Qual o preço do produto?: "));
-let desconto = parseFloat(prompt("Digite o valor do desconto Por favor: "));
+let desconto = parseFloat(prompt("Digite o valor do desconto: "));
 
 function calcularDesconto(price, desconto) {
   const resultado = price - (price * desconto) / 100;
