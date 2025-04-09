@@ -54,6 +54,15 @@ app.get("/", (req, res) => {
   // res.redirect("/cadastro"); //Redireciona para a ROTA cadastro
 });
 
+app.get("/usuarios", (req, res) => {
+  const query = "SELECT * FROM users  ";
+  db.all(query, (err, row) => {
+    console.log(`GET /usuarios ${JSON.stringify(row)}`);
+    // res.send("Lista de usuários");
+    res.render("usertable");
+  });
+});
+
 app.get("/cadastro", (req, res) => {
   console.log("GET /Cadastro");
   res.render("cadastro");
