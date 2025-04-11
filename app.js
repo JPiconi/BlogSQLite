@@ -50,7 +50,9 @@ app.get("/", (req, res) => {
   console.log("GET /index");
   //Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
-  res.render("pages/index");
+  res.render("pages/index", {
+    Title: "Blog da Turma I2HNA - SESI de Nova Odessa",
+  });
   // res.redirect("/cadastro"); //Redireciona para a ROTA cadastro
 });
 
