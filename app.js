@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
   console.log("GET /index");
   //Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
-  res.render("index");
+  res.render("pages/index");
   // res.redirect("/cadastro"); //Redireciona para a ROTA cadastro
 });
 
@@ -59,13 +59,13 @@ app.get("/usuarios", (req, res) => {
   db.all(query, (err, row) => {
     console.log(`GET /usuarios ${JSON.stringify(row)}`);
     // res.send("Lista de usuários");
-    res.render("usertable");
+    res.render("partials/usertable");
   });
 });
 
 app.get("/cadastro", (req, res) => {
   console.log("GET /Cadastro");
-  res.render("cadastro");
+  res.render("pages/cadastro");
 });
 
 //POST do cadastro.
@@ -113,7 +113,7 @@ app.post("/cadastro", (req, res) => {
 
 app.get("/login", (req, res) => {
   console.log("GET /login");
-  res.render("login");
+  res.render("pages/login");
 });
 
 app.post("/login", (req, res) => {
@@ -121,9 +121,14 @@ app.post("/login", (req, res) => {
   res.send("Login ainda não efetuado");
 });
 
+app.get("/dashboard", (req, res) => {
+  console.log("GET/dashboard");
+  res.render("pages/dashboard");
+});
+
 app.get("/sobre", (req, res) => {
   console.log("GET /sobre");
-  res.render("sobre");
+  res.render("pages/sobre");
 });
 
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
