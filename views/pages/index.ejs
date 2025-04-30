@@ -9,101 +9,14 @@
       <span class="cloud"></span>
     </div>
     <%# COMENTÁRIO EM EJS %>
-    <section class="container">
-      <div class="image_container">
+    <section class="container1">
+      <div class="image_container1">
         <h1>Crie sua conta</h1>
         <p>
           Compartilhe suas aventuras e <br />
           descubra novos lugares ao redor do mundo!
         </p>
       </div>
-      <form id="cadastroForm" method="post" action="/cadastro">
-        <div class="title">
-          <h1>Cadastre-se</h1>
-          <p>Preencha os campos abaixo e torne-se parte da nossa comunidade.</p>
-        </div>
-
-        <div class="input_data">
-          <input
-            type="text"
-            id="nome"
-            name="username"
-            value="Jujubis"
-            required
-          />
-          <label for="">Nome</label>
-        </div>
-
-        <div class="input_data">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value="Jujubis@hotmail.com"
-            required
-          />
-          <label for="">Email</label>
-        </div>
-        <div class="input_data">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value="Jujubis10**"
-            required
-          />
-          <label for="">Senha</label>
-        </div>
-        <div class="input_data">
-          <input
-            type="password"
-            id="ConfirmarSenha"
-            name="ConfirmarSenha"
-            value="Jujubis10**"
-            required
-          />
-          <label for="">Confirmar Senha</label>
-        </div>
-        <div class="input_data">
-          <input
-            type="tel"
-            id="celular"
-            name="celular"
-            maxlength="15"
-            value="19 978264076"
-            required
-          />
-          <label for="">Celular</label>
-        </div>
-        <div class="input_data">
-          <input
-            type="text"
-            id="cpf"
-            name="cpf"
-            value="48475996325"
-            maxlength="14"
-            required
-          />
-          <label for="">CPF</label>
-        </div>
-        <div class="input_data">
-          <input
-            type="text"
-            id="rg"
-            name="rg"
-            maxlength="12"
-            value="698527419"
-            required
-          />
-          <label for="">RG</label>
-        </div>
-        <%# if (condition) { %> <%# } %>
-
-        <div class="bntArea">
-          <p class="msgError"></p>
-          <button id="bntSubmit" type="submit">Enviar</button>
-        </div>
-      </form>
     </section>
     <%- include("../partials/footer") %>;
   </body>

@@ -3,6 +3,7 @@ const express = require("express"); // Importa lib do Express
 const sqlite3 = require("sqlite3"); // Importa lib do sqlite3
 
 const bodyParser = require("body-parser"); // Importa o body-parser
+const session = require("express-session");
 
 const PORT = 8000; //Porta TCP do servidor HHTP da aplicação;
 
@@ -19,6 +20,14 @@ db.serialize(() => {
      password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT )`
   );
 });
+// Configuração para uso de sessão (cookies) com Express
+app.use(
+  session({
+    secret: "senhaqualquer",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 //__dirname é a variável interna do nodejs que guarda o caminho absoluto do projeto, no SO
 //console.log(__dirname + "/static");
@@ -132,7 +141,24 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   console.log("POST /login");
-  res.send("Login ainda não efetuado");
+  const { username, password } = req.body;
+
+  //consultar o usuário no banco de dados
+  const query = "SELECT * FROM  users  WHERE username = ? AND password = ?";
+  db.get(query, [username, password], (err, row) => {
+    if (err) throw err;
+    //se usuário válido -> registra a sessão e redireciona para o dashboard
+    if (row) {
+      req.session.loggedin = true;
+      req.session.username = username;
+      res.redirect("/dashboard");
+    } //se não, envia mensagem de erro(usuario não cadastrado, favor cadastrar)
+    else {
+      res.send(
+        "Usuario não cadastrado ou Inválido, favor cadastrar-se ou verificar"
+      );
+    }
+  });
 });
 
 app.get("/dashboard", (req, res) => {

@@ -9,15 +9,15 @@
   </thead>
 
   <tbody>
-    <% for( let i = 0; i < 8; i++ ) { %>
+    <% for( let i = 0; i < 8; i++ ) { %> <% if (i % 2 == 0) { %>
     <tr>
       <td><%= i %></td>
       <td>Name</td>
       <td>Email</td>
       <td>Celular</td>
     </tr>
+    <% } %> <% } %>
   </tbody>
-  <% } %>
 </table>
 
 <!-- 
