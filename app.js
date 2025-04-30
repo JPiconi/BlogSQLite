@@ -9,6 +9,8 @@ const PORT = 8000; //Porta TCP do servidor HHTP da aplicação;
 const app = express(); //Instância para uso do Express
 
 const db = new sqlite3.Database("user.db"); //Instância para uso do Sqlite3, e usa o arquivo 'user.db'
+
+let config = { Title: "", footer: "" };
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 db.serialize(() => {
   //Este método permite enviar comandos SQL em modo 'sequencial'
@@ -50,9 +52,11 @@ app.get("/", (req, res) => {
   console.log("GET /index");
   //Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
-  res.render("pages/index", {
-    Title: "Blog da Turma I2HNA - SESI de Nova Odessa",
-  });
+  config = { Title: "Blog da Turma I2HNA - SESI de Nova Odessa", footer: "" };
+  res.render("pages/index", config);
+  // res.render("pages/index", {
+  //   Title: "Blog da Turma I2HNA - SESI de Nova Odessa",
+  // });
   // res.redirect("/cadastro"); //Redireciona para a ROTA cadastro
 });
 
@@ -67,7 +71,11 @@ app.get("/usuarios", (req, res) => {
 
 app.get("/cadastro", (req, res) => {
   console.log("GET /Cadastro");
-  res.render("pages/cadastro");
+  config = { Title: "Página de Cadastro!!", footer: "" };
+  res.render("pages/cadastro", config);
+  // res.render("pages/cadastro", {
+  //   Title: "Página de Cadastro!!",
+  // });
 });
 
 //POST do cadastro.
@@ -115,7 +123,11 @@ app.post("/cadastro", (req, res) => {
 
 app.get("/login", (req, res) => {
   console.log("GET /login");
-  res.render("pages/login");
+  config = { Title: "Página de Login!!", footer: "" };
+  res.render("pages/login", config);
+  // res.render("pages/login", {
+  //   Title: "Página de Login!!",
+  // });
 });
 
 app.post("/login", (req, res) => {
@@ -125,12 +137,20 @@ app.post("/login", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   console.log("GET/dashboard");
-  res.render("pages/dashboard");
+  config = { Title: "Página de Dashboard!!", footer: "" };
+  res.render("pages/dashboard", config);
+  // res.render("pages/dashboard", {
+  //   Title: "Página de dashboard!!",
+  // });
 });
 
 app.get("/sobre", (req, res) => {
   console.log("GET /sobre");
-  res.render("pages/sobre");
+  config = { Title: "Página de Informações!!", footer: "" };
+  res.render("pages/sobre", config);
+  // res.render("pages/sobre", {
+  //   Title: "Página de Informações!!",
+  // });
 });
 
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
