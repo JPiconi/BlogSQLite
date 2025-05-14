@@ -5,40 +5,18 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Celular</th>
+      <th scope="col">Senha</th>
     </tr>
   </thead>
-
-  <tbody>
-    <% for( let i = 0; i < 8; i++ ) { %> <% if (i % 2 == 0) { %>
-    <tr>
-      <td><%= i %></td>
-      <td>Name</td>
-      <td>Email</td>
-      <td>Celular</td>
+  <tbody> 
+    <% let index=1; dados.forEach(user => { %> 
+      <tr <%- req.session.username==user.username ? `style="color: white; font-style: bold;"` : `` %>>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.celular %></td>
+      <td><%= user.password %> </td>
     </tr>
-    <% } %> <% } %>
+      <% index++ }) %>
   </tbody>
 </table>
-
-<!-- 
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>NOME</td>
-      <td>EMAIL</td>
-      <td>CELULAR</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>NOME</td>
-      <td>EMAIL</td>
-      <td>CELULAR</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>NOME</td>
-      <td>EMAIL</td>
-      <td>CELULAR</td>
-    </tr>
-  </tbody>
-</table> -->

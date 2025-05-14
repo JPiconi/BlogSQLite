@@ -75,7 +75,7 @@ app.get("/usuarios", (req, res) => {
   db.all(query, (err, row) => {
     console.log(`GET /usuarios ${JSON.stringify(row)}`);
     // res.send("Lista de usuários");
-    res.render("partials/usertable");
+    res.render("partials/usertable", { ...config, req: req });
   });
 });
 
@@ -169,13 +169,29 @@ app.post("/login", (req, res) => {
   });
 });
 
+// app.get("/dashboard", (req, res) => {
+//   console.log("GET/dashboard");
+//   config = { Title: "Página de Dashboard!!", footer: "" };
+//   res.render("pages/dashboard", { ...config, req: req });
+//   // res.render("pages/dashboard", {
+//   //   Title: "Página de dashboard!!",
+//   // });
+// });
+
 app.get("/dashboard", (req, res) => {
-  console.log("GET/dashboard");
-  config = { Title: "Página de Dashboard!!", footer: "" };
-  res.render("pages/dashboard", { ...config, req: req });
-  // res.render("pages/dashboard", {
-  //   Title: "Página de dashboard!!",
-  // });
+  if (req.session.loggedin) {
+    //res.send(`Bem-vindo, ${req.session.username}!<br><a href="/logout">Sair</a>`);
+    // res.sendFile(__dirname + '/index.html');
+    config = { Title: "Página de Dashboard!!", footer: "" };
+    db.all("SELECT * FROM users", [], (err, row) => {
+      if (err) throw err;
+      res.render("pages/dashboard", { ...config, dados: row, req: req });
+    });
+  } else {
+    res.send(
+      'Tentativa de acesso a uma área restrita. Faça login para acessar esta página. <a href="/">Login</a>'
+    );
+  }
 });
 
 app.get("/sobre", (req, res) => {
@@ -185,6 +201,11 @@ app.get("/sobre", (req, res) => {
   // res.render("pages/sobre", {
   //   Title: "Página de Informações!!",
   // });
+});
+
+app.use("*", (req, res) => {
+  // Envia uma resposta de erro 404
+  res.status(404).render("pages/404", { ...config, req: req });
 });
 
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
