@@ -62,7 +62,8 @@ app.get("/", (req, res) => {
   //Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
   config = { Title: "Blog da Turma I2HNA - SESI de Nova Odessa", footer: "" };
-  res.render("pages/index", config);
+  //res.render("pages/index", config);
+  res.render("pages/index", { ...config, req: req });
   // res.render("pages/index", {
   //   Title: "Blog da Turma I2HNA - SESI de Nova Odessa",
   // });
@@ -81,7 +82,7 @@ app.get("/usuarios", (req, res) => {
 app.get("/cadastro", (req, res) => {
   console.log("GET /Cadastro");
   config = { Title: "Página de Cadastro!!", footer: "" };
-  res.render("pages/cadastro", config);
+  res.render("pages/cadastro", { ...config, req: req });
   // res.render("pages/cadastro", {
   //   Title: "Página de Cadastro!!",
   // });
@@ -133,10 +134,17 @@ app.post("/cadastro", (req, res) => {
 app.get("/login", (req, res) => {
   console.log("GET /login");
   config = { Title: "Página de Login!!", footer: "" };
-  res.render("pages/login", config);
+  res.render("pages/login", { ...config, req: req });
   // res.render("pages/login", {
   //   Title: "Página de Login!!",
   // });
+});
+
+app.get("/logout", (req, res) => {
+  // Exemplo de uma rota (END POINT) controlado pela sessão do usuário logado.
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
 });
 
 app.post("/login", (req, res) => {
@@ -164,7 +172,7 @@ app.post("/login", (req, res) => {
 app.get("/dashboard", (req, res) => {
   console.log("GET/dashboard");
   config = { Title: "Página de Dashboard!!", footer: "" };
-  res.render("pages/dashboard", config);
+  res.render("pages/dashboard", { ...config, req: req });
   // res.render("pages/dashboard", {
   //   Title: "Página de dashboard!!",
   // });
@@ -173,7 +181,7 @@ app.get("/dashboard", (req, res) => {
 app.get("/sobre", (req, res) => {
   console.log("GET /sobre");
   config = { Title: "Página de Informações!!", footer: "" };
-  res.render("pages/sobre", config);
+  res.render("pages/sobre", { ...config, req: req });
   // res.render("pages/sobre", {
   //   Title: "Página de Informações!!",
   // });
