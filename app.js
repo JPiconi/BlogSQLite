@@ -31,6 +31,7 @@ app.use(
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 //__dirname é a variável interna do nodejs que guarda o caminho absoluto do projeto, no SO
 //console.log(__dirname + "/static");
+//socorro
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 //Aqui será acrescentado uma rota "/static", para a pasta __dirname + "/static"
 //O app use é usado para acrescentar rotas novas para o Express gerenciar e pode usar
