@@ -67,6 +67,63 @@ footer {
   align-items: center;
 }
 
+.uau {
+  margin: 0;
+  padding: 0;
+  width: 80%;
+  height: 100px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.conta {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 64px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 48px;
+  margin: 10px 0;
+  color: #ff4c4c;
+}
+
+p {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+a.button {
+  padding: 12px 24px;
+  background-color: #0f2a1d;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+  background-color: #47462d;
+}
+
 footer p {
   color: #e3eed4;
   font-size: 1.3em;
@@ -162,14 +219,14 @@ th,
 td {
   border: 1px solid;
   padding: 10px;
-  background: linear-gradient(
-    159deg,
-    rgba(55, 85, 52, 1) 30%,
-    rgba(55, 71, 90, 1) 68%
-  );
-  backdrop-filter: blur(20px);
+  background: linear-gradient(180deg, #47462d 0%, #5b5940 50%, #686b45 100%);
+  backdrop-filter: blur(100px);
 }
 
+.destaque {
+  color: #d0d0c6;
+  font-style: bold;
+}
 .container1 {
   width: 80%;
   height: 80%;
@@ -206,7 +263,7 @@ td {
   z-index: 1;
 }
 
-.image_container2 {
+/* .image_container2 {
   width: 100%;
   height: 100%;
   background: url("/static/images/erro.jpg") center / cover no-repeat;
@@ -229,7 +286,7 @@ td {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
-}
+} */
 
 .image_container1 h1,
 .image_container1 p {

@@ -205,6 +205,7 @@ app.get("/sobre", (req, res) => {
 
 app.use("*", (req, res) => {
   // Envia uma resposta de erro 404
+  config = { Title: "ERRO!!", footer: "" };
   res.status(404).render("pages/404", { ...config, req: req });
 });
 
