@@ -31,7 +31,6 @@ app.use(
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 //__dirname é a variável interna do nodejs que guarda o caminho absoluto do projeto, no SO
 //console.log(__dirname + "/static");
-//socorro
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 //Aqui será acrescentado uma rota "/static", para a pasta __dirname + "/static"
 //O app use é usado para acrescentar rotas novas para o Express gerenciar e pode usar
@@ -92,44 +91,40 @@ app.get("/cadastro", (req, res) => {
 //POST do cadastro.
 app.post("/cadastro", (req, res) => {
   console.log("POST /cadastro");
-  req.body
-    ? console.log(JSON.stringify(req.body))
-    : console.log(`Body vazio: ${req.body}`);
+  const { username, password } = req.body;
+  // Verifica se o usuário já se encontra cadastrado
+  const query = "SELECT * FROM users WHERE username = ?";
 
-  const { username, password, email, celular, cpf, rg } = req.body;
-
-  //colocar aqui as validações e inclusão no banco de dados do cadastro do usuário
-  // 1. Validar campos
-
-  // 2. Verificar se ele ja existe no banco
-  const query =
-    "SELECT * FROM users WHERE email = ? OR cpf = ? OR rg = ? OR username = ?";
-  db.get(query, [email, cpf, rg, username], (err, row) => {
+  db.get(query, [username], (err, row) => {
     if (err) throw err;
 
     if (row) {
-      // A variável 'row' irá retornar os dados do banco de dados
-      // Executado atráves do SQL, variável query
-      res.send("Usuário já cadastrado! Por favor refaça o cadastro");
+      res.redirect("/not_register");
     } else {
-      // 3. Se o usuário não existe no banco cadastrar
+      // Caso não esteja cadastrado, cadastra o usuário
       const insertQuery =
-        "INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)";
-      db.run(
-        insertQuery,
-        [username, password, email, celular, cpf, rg],
-        (err) => {
-          // Inserir a lógica INSERT
-          if (err) throw err;
-          res.send("Usuário cadastrado com sucesso!");
-        }
-      );
+        "INSERT INTO users (username, password) VALUES (?, ?)";
+      db.run(insertQuery, [username, password], (err) => {
+        if (err) throw err;
+        // Aqui o login será efetuado, após o cadastro.
+        req.session.loggedin = true;
+        req.session.username = username;
+        res.redirect("/yes_register");
+      });
     }
   });
+});
 
-  // res.send(
-  //   `Bem-Vindo usuário: ${req.body.username}, seu email é: ${req.body.email}`
-  // );
+app.get("/not_register", (req, res) => {
+  console.log("GET /not_register");
+  config = { Title: "Erro no Cadastro!!", footer: "" };
+  res.render("pages/not_register", { ...config, req: req });
+});
+
+app.get("/yes_register", (req, res) => {
+  console.log("GET /yes_register");
+  config = { Title: "Cadastrado com sucesso!!", footer: "" };
+  res.render("pages/yes_register", { ...config, req: req });
 });
 
 app.get("/login", (req, res) => {
@@ -139,6 +134,12 @@ app.get("/login", (req, res) => {
   // res.render("pages/login", {
   //   Title: "Página de Login!!",
   // });
+});
+
+app.get("/login_fail", (req, res) => {
+  console.log(JSON.stringify(req.status));
+  config = { Title: "Login inválido!!", footer: "" };
+  res.render("pages/login_fail", { ...config, req: req });
 });
 
 app.get("/logout", (req, res) => {
@@ -163,9 +164,7 @@ app.post("/login", (req, res) => {
       res.redirect("/dashboard");
     } //se não, envia mensagem de erro(usuario não cadastrado, favor cadastrar)
     else {
-      res.send(
-        "Usuario não cadastrado ou Inválido, favor cadastrar-se ou verificar"
-      );
+      res.redirect("/login_fail");
     }
   });
 });
