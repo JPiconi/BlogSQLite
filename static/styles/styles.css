@@ -321,7 +321,19 @@ td {
 }
 
 .ohoh {
-  background: linear-gradient(250deg, #f0efee 0%, #726352 20%);
+  height: 80%;
+  width: 97%;
+  background: linear-gradient(
+    250deg,
+    rgba(55, 85, 52, 1) 30%,
+    rgba(55, 71, 90, 1) 68%
+  );
+  border: 4px solid #1a1a1a;
+  border-radius: 30px;
+  backdrop-filter: blur(40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container5 {
   background-color: #fff;

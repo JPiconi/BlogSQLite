@@ -80,7 +80,7 @@ app.get("/usuarios", (req, res) => {
 });
 
 app.get("/cadastro", (req, res) => {
-  console.log("GET /Cadastro");
+  console.log("GET /cadastro");
   config = { Title: "Página de Cadastro!!", footer: "" };
   res.render("pages/cadastro", { ...config, req: req });
   // res.render("pages/cadastro", {
